@@ -4,15 +4,15 @@ from PIL import Image
 from io import BytesIO
 
 # Ubah input menjadi bytes
-im_bytes = base64.b64decode(str.encode(sys.argv[1]))  
+im_bytes = base64.b64decode(str.encode(sys.argv[1]))
 # Ubah byte menjadi gambar
-im_file = BytesIO(im_bytes)  
+im_file = BytesIO(im_bytes)
 # Ubah gambar menjadi PIL Object
-img = Image.open(im_file)   
+img = Image.open(im_file)
 # Convert ke Grayscale
 img = img.convert('L')
 # Convert ke Grayscale
-img = img.resize((512,512))
+img = img.resize((64, 64))
 
 # Alokasi tempat di memory
 buffered = BytesIO()
