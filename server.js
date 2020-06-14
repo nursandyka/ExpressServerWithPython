@@ -9,7 +9,7 @@ app.use(express.json());
 
 // On localhost:3000/welcome
 app.get("/", function (req, res) {
-  res.send("<b>Hello</b> welcome to my http server made with express");
+  res.send("<b>Hello</b> welcome to my http server made with expressVPN");
 });
 
 // on the request to root (localhost:3000/)
