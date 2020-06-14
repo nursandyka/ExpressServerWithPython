@@ -13,7 +13,7 @@ app.get("/", function (req, res) {
 });
 
 // on the request to root (localhost:3000/)
-app.post("/", function (req, res) {
+app.post("/img", function (req, res) {
   // Call python script
   const pythonProcess = spawn("python", ["image_grayscale.py", req.body.img]);
 
