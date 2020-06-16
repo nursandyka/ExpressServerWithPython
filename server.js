@@ -33,7 +33,7 @@ app.post("/img", function (req, res) {
     //split_data = data.toString().split("+++");
     // Do something with the data returned from python script
     console.log("close");
-    console.log(largeData.join(""));
+    console.log(largeData.join("").replace(/\s+\n+/g, ""));
     res.send(largeData.join(""));
   });
 
