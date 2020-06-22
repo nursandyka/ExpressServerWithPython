@@ -24,4 +24,3 @@ img_str = base64.b64encode(buffered.getvalue())
 # Hasil
 output = f'{img_str.decode("utf8")}+++{str(img.width)}+++{str(img.height)}'
 print(output)
-sys.stdout.flush()
