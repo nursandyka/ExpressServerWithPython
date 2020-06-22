@@ -14,6 +14,8 @@ app.get("/", function (req, res) {
 
 // on the request to root (localhost:3000/)
 app.post("/img", function (req, res) {
+  //console.log(req.body);
+  console.log("Request Accepted");
   // Call python script
   const pythonProcess = spawn("python", ["image_grayscale.py", req.body.img]);
 
@@ -21,13 +23,14 @@ app.post("/img", function (req, res) {
   pythonProcess.stdout.on("data", (data) => {
     split_data = data.toString().split("+++");
     // Do something with the data returned from python script
-    res.send(
-      `
-      <b>GAMBAR<b/><br/><img src="data:image/jpeg;base64,${split_data[0]}"><br/> 
-      <b>WIDTH : <b/> ${split_data[1]}<br/> 
-      <b>HEIGHT : <b/> ${split_data[2]}<br/>
-      `
-    );
+    // res.send(
+    //   `
+    //   <b>GAMBAR<b/><br/><img src="data:image/jpeg;base64,${split_data[0]}"><br/> 
+    //   <b>WIDTH : <b/> ${split_data[1]}<br/> 
+    //   <b>HEIGHT : <b/> ${split_data[2]}<br/>
+    //   `
+    // );
+    res.send("SUCCESS");
   });
 
   //When error
