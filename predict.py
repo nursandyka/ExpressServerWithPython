@@ -1,42 +1,12 @@
 import sys
 import base64
 import numpy as np
-from PIL import Image
-from io import BytesIO
 from dbn.tensorflow import SupervisedDBNClassification
 import cv2
 import face_recognition
 
-
-# def prediction(x_test):
-#     # Restore
-#     classifier = SupervisedDBNClassification.load('model.pkl')
-#     pred = classifier.predict(x_test)
-#     return pred
-
-
-x_test = []
-
-# # Ubah input menjadi bytes
-# im_bytes = base64.b64decode(str.encode(sys.argv[1]))
-# # Ubah byte menjadi gambar
-# im_file = BytesIO(im_bytes)
-# # Ubah gambar menjadi PIL Object
-# img = Image.open(im_file)
-# # Convert ke Grayscale
-# img = img.convert('L')
-# # Convert ke Grayscale
-# data = np.asarray(img)
-# data = data.flatten()  # make 1 dimension
-# data = data/255  # image pixel normalization
-# x_test.append(data)
-
-
 img_bytes = base64.b64decode(str.encode(sys.argv[1]))
 im_arr = np.frombuffer(img_bytes, dtype=np.uint8)
-# Ubah byte menjadi gambar
-# img = BytesIO(img_bytes)
-# img = Image.open(img)
 img = cv2.imdecode(im_arr, flags=cv2.IMREAD_COLOR)
 rgb_image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 # detect the (x,y)-coordinates of the bounding boxes
