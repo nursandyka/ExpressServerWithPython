@@ -10,7 +10,7 @@ app.use(express.json({ limit: "50mb" }));
 
 // On localhost:3000/welcome
 app.get("/", function (req, res) {
-  res.send("<b>Hello</b> welcome to my http server made with express");
+  res.send("<b>Hello</b> welcome to my http server made with expressVPN");
 });
 
 // on the request to root (localhost:3000/)
@@ -53,12 +53,12 @@ app.post("/img", function (req, res) {
   });
 
   //When error
-  // pythonProcess.stderr.setEncoding("utf-8");
-  // pythonProcess.stderr.on("data", function (data) {
-  //   //Here is where the error output goes
-  //   console.log("stderr: " + data);
-  //   //res.send("<b>ERROR</b>");
-  // });
+  //   pythonProcess.stderr.setEncoding("utf-8");
+  //   pythonProcess.stderr.on("data", function (data) {
+  //     //Here is where the error output goes
+  //     console.log("stderr: " + data);
+  //     //res.send("<b>ERROR</b>");
+  //   });
 });
 
 // Change the 404 message modifing the middleware
