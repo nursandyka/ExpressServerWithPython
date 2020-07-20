@@ -5,7 +5,7 @@ const spawn = require("child_process").spawn;
 const PORT = 5000;
 
 // Parse JSON bodies (as sent by API clients)
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 
 // On localhost:3000/welcome
 app.get("/", function (req, res) {
@@ -34,6 +34,12 @@ app.post("/img", function (req, res) {
     // Do something with the data returned from python script
     console.log("close");
     console.log(largeData.join("").replace(/\s+\n+/g, ""));
+    // res.send(
+    //   "<img src='data:image/jpeg;base64," +
+    //     req.body.img +
+    //     "'/><br/>" +
+    //     largeData.join("")
+    // );
     res.send(largeData.join(""));
   });
 
