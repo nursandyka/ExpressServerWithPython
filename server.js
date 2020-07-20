@@ -37,7 +37,6 @@ app.post("/img", function (req, res) {
     pythonProcess.stdout.on("close", () => {
       //split_data = data.toString().split("+++");
       // Do something with the data returned from python script
-      console.log(largeData);
       console.log(
         "RESULT : ",
         largeData.join("").replace(/(\r\n|\n|\r)/gm, "")
