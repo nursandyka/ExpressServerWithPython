@@ -22,6 +22,12 @@ app.post("/img", function (req, res) {
   // Call python script
   const pythonProcess = spawn("python", ["predict.py", req.body.img]);
 
+  // const pythonProcess = spawn("python", ["predict.py"]);
+  // pythonProcess.stdin.setEncoding("utf8");
+  // pythonProcess.stdin.write(req.body.img);
+  // setTimeout(function () {
+  //   pythonProcess.stdin.end();
+  // }, 1000);
   // When data return
   pythonProcess.stdout.on("data", (data) => {
     //split_data = data.toString().split("+++");
@@ -44,12 +50,12 @@ app.post("/img", function (req, res) {
   });
 
   //When error
-  // pythonProcess.stderr.setEncoding("utf-8");
-  // pythonProcess.stderr.on("data", function (data) {
-  //   //Here is where the error output goes
-  //   console.log("stderr: " + data);
-  //   //res.send("<b>ERROR</b>");
-  // });
+  //   pythonProcess.stderr.setEncoding("utf-8");
+  //   pythonProcess.stderr.on("data", function (data) {
+  //     //Here is where the error output goes
+  //     console.log("stderr: " + data);
+  //     //res.send("<b>ERROR</b>");
+  //   });
 });
 
 // Change the 404 message modifing the middleware
