@@ -1,5 +1,6 @@
 var express = require("express");
 var app = express();
+var fs = require("fs");
 
 const spawn = require("child_process").spawn;
 const PORT = 5000;
@@ -19,28 +20,33 @@ app.post("/img", function (req, res) {
   console.log(
     `Request Accepted on ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
   );
-  // Call python script
-  const pythonProcess = spawn("python", ["predict.py", req.body.img]);
 
-  // When data return
-  pythonProcess.stdout.on("data", (data) => {
-    //split_data = data.toString().split("+++");
-    // Do something with the data returned from python script
-    largeData.push(data);
-  });
+  fs.writeFile("img.jpg", req.body.img, { encoding: "base64" }, function (err) {
+    console.log("image received");
+    console.log("process image");
+    // Call python script
+    const pythonProcess = spawn("python", ["predict.py"]);
+    // When data return
+    pythonProcess.stdout.on("data", (data) => {
+      console.log("process done");
+      //split_data = data.toString().split("+++");
+      // Do something with the data returned from python script
+      largeData.push(data);
+    });
 
-  pythonProcess.stdout.on("close", () => {
-    //split_data = data.toString().split("+++");
-    // Do something with the data returned from python script
-    console.log("close");
-    console.log(largeData.join("").replace(/\s+\n+/g, ""));
-    // res.send(
-    //   "<img src='data:image/jpeg;base64," +
-    //     req.body.img +
-    //     "'/><br/>" +
-    //     largeData.join("")
-    // );
-    res.send(largeData.join(""));
+    pythonProcess.stdout.on("close", () => {
+      //split_data = data.toString().split("+++");
+      // Do something with the data returned from python script
+      console.log("RESULT : ", largeData.join("").replace(/\s+\n+/g, ""));
+      console.log("sending result");
+      // res.send(
+      //   "<img src='data:image/jpeg;base64," +
+      //     req.body.img +
+      //     "'/><br/>" +
+      //     largeData.join("")
+      // );
+      res.send(largeData.join(""));
+    });
   });
 
   //When error

@@ -7,11 +7,12 @@ import cv2
 import face_recognition
 
 # decode base64 to bytes
-img_bytes = base64.b64decode(str.encode(sys.argv[1]))
+# img_bytes = base64.b64decode(str.encode(sys.argv[1]))
 # convert img bytes to array
-im_arr = np.frombuffer(img_bytes, dtype=np.uint8)
+# im_arr = np.frombuffer(img_bytes, dtype=np.uint8)
 # convert array into image
-img = cv2.imdecode(im_arr, flags=cv2.IMREAD_COLOR)
+# img = cv2.imdecode(im_arr, flags=cv2.IMREAD_COLOR)
+img = cv2.imread("img.jpg")
 # convert BGR format to RGB format
 rgb_image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 # detect the (x,y)-coordinates of the bounding boxes
